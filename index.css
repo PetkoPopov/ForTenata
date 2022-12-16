@@ -1,0 +1,16 @@
+div {
+    position: relative;
+    background-color: cadetblue;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: solid black 2px;
+}
+
+canvas {
+    background-color: chartreuse;
+    border: solid 5px green;
+    width: 500px;
+    height: 500px;
+    ;
+}
