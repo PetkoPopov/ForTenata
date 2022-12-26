@@ -12,8 +12,8 @@ var r_number_1, r_number_2
 r_number_1 = Math.ceil((Math.random() * 11) * (Math.random() * 13)) * 7
 r_number_2 = Math.ceil((Math.random() * 11) * (Math.random() * 13)) * 5
 
-createCircle(rBigCircle, rBigCircle, r_number_1, r_number_2, "red", "circle_red")
-createCircle(size, size, x, y)
+createCircle(rBigCircle, r_number_1, r_number_2, "red", "circle_red")
+createCircle(size, x, y)
 
 calcCircle(r_number_1, r_number_2 )
 
@@ -22,33 +22,34 @@ function calcCircle(a, b) {
     let x0 = a
     let y0 = b 
     let dY = 0
+    console.log('center of circles ==>  ',a,b)
     for (let i = 0; i <= rBigCircle; i++) {
         dY = (Math.sqrt(rBigCircle * rBigCircle - i * i))
         let coorY = y0 + Number(dY.toFixed())
         let coorX = x0 + i
         circlePath.push({ coorX, coorY })
-        createCircle(size, size, coorX, coorY)
+        createCircle(size, coorX, coorY)
     }
     for (let i = rBigCircle; i >= 0; i--) {
         dY = (Math.sqrt(rBigCircle * rBigCircle - i * i))
         let coorY = y0 + Number(dY.toFixed())
         let coorX = x0 - i
         circlePath.push({ coorX, coorY })
-        createCircle(size, size, coorX, coorY)
+        createCircle(size, coorX, coorY)
     }
     for (let i = 0; i <= rBigCircle; i++) {
         dY = (Math.sqrt(rBigCircle * rBigCircle - i * i))
         let coorY = y0 - Number(dY.toFixed())
         let coorX = x0 - i
         circlePath.push({ coorX, coorY })
-        createCircle(size, size, coorX, coorY)
+        createCircle(size,  coorX, coorY)
     }
     for (let i = 0; i <= rBigCircle; i++) {
         dY = (Math.sqrt(rBigCircle * rBigCircle - i * i))
         let coorY = y0 - Number(dY.toFixed())
         let coorX = x0 + i
         circlePath.push({ coorX, coorY })
-        createCircle(size, size, coorX, coorY)
+        createCircle(size, coorX, coorY)
     }
     // console.log(circlePath)
 }
@@ -59,6 +60,7 @@ canvas.addEventListener('click', (event) => {
     var ampl = 0
     var a_click = event.clientX;
     var b_click = event.clientY;
+    console.log("cursor ==> "a_click,'<>',b_click)
     if (a_click == x && b_click == y) { }
     else {
         var k = (b_click - y) / (a_click - x)
@@ -80,7 +82,7 @@ canvas.addEventListener('click', (event) => {
 
             path.push({ i, y });
         }
-        console.log(path)
+        
     }
     x = a_click
     y = b_click
@@ -97,20 +99,20 @@ function showPath() {
             clearInterval(anime)
         } else {
             canvas.removeChild(d[d.length - 1])
-            createCircle(size, size, r.i, r.y)
+            createCircle(size, r.i, r.y)
         }
     }, speed)
 
 }
 
-function createCircle(n, m, left, bottom, color = 'cadetblue', class_ = "circle") {
+function createCircle(n, left, bottom, color = 'cadetblue', class_ = "circle") {
     d = document.createElement('div')
     d.setAttribute('class', class_)
     d.style.backgroundColor = color
     d.style.left = String(left) + 'px'
     d.style.top = String(bottom) + 'px'
     d.style.width = String(n) + 'px'
-    d.style.height = String(m) + 'px'
+    d.style.height = String(n) + 'px'
 
     canvas.appendChild(d)
 }
